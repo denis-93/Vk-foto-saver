@@ -54,10 +54,20 @@ class VkUser:
             user_id = self.get_id(user_id)
             if user_id == None:
                 return None
+        album = input('''Введите с какого альбома вы хотите скачать фото:
+            1 - фото профиля
+            2 - фото со стены
+            3 - сохраненные фото
+            ''')
+        album_id = {
+            '1': 'profile',
+            '2': 'wall',
+            '3': 'saved'
+        }
         profile_photos_url = self.url + 'photos.get'
         profile_photos_params = {
             'owner_id': user_id,
-            'album_id': 'profile',
+            'album_id': album_id[album],
             'extended': 1,
             'photo_sizes': 1,
             'count': count
